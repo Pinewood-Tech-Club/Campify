@@ -32,11 +32,13 @@ import {
 } from "./components/message-text/Heading";
 import { ButtonText, TitleButton } from "./components/button/TitleButton";
 import { signIn, useSession } from "next-auth/react";
+import { trpc } from "@/trpc/react";
 
 const textTypes = ["font-serif", "font-sans", "font-mono"];
 
 export default function Home() {
   const session = useSession();
+
   return (
     <main>
       <DivList className="h-screen w-full">
@@ -45,7 +47,7 @@ export default function Home() {
           pfpImage={{
             src:
               session.status !== "unauthenticated"
-                ? session.data?.user.image_url ?? "/default_pfp.svg"
+                ? (session.data?.user.image_url ?? "/default_pfp.svg")
                 : "/default_pfp.svg",
             w: "w-16",
             h: "h-16",
