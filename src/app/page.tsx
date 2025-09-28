@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Navbar from "./components/Navbar";
+import Navbar from "../components/Navbar";
 import cx from "classnames";
 import lodash from "lodash";
 import { Fragment, useEffect, useState } from "react";
@@ -11,26 +11,26 @@ import {
   CardBody,
   LowerDecorationText,
   UpperDecorationText,
-} from "./components/card/Card";
-import ProfanityWithMadEmoji from "./components/ProfanityWithMadEmoji";
-import Footer from "./components/Footer";
+} from "../components/card/Card";
+import ProfanityWithMadEmoji from "../components/ProfanityWithMadEmoji";
+import Footer from "../components/Footer";
 import {
   HighlightedText,
   LinkText,
   SwitchTextFont,
-} from "./components/text/TextDecorations";
+} from "../components/text/TextDecorations";
 import {
   DivList,
   DivListGrow,
   DivListGrowCenter,
-} from "./components/util/DivUtil";
+} from "../components/util/DivUtil";
 import {
   Heading,
   HeadingBody,
   HeadingHead,
   HeadingMargin,
-} from "./components/message-text/Heading";
-import { ButtonText, TitleButton } from "./components/button/TitleButton";
+} from "../components/message-text/Heading";
+import { ButtonText, TitleButton } from "../components/button/TitleButton";
 import { signIn, useSession } from "next-auth/react";
 import { trpc } from "@/trpc/react";
 

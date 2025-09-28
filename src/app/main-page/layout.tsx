@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { SideBar } from "../components/dashboard/sidebar/Sidebar";
+import { SideBar } from "../../components/dashboard/sidebar/Sidebar";
 import cx from "classnames";
 import { SessionProvider } from "next-auth/react";
 import { getServerSession } from "next-auth";

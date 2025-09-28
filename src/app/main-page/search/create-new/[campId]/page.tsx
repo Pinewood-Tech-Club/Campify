@@ -1,7 +1,7 @@
 "use client";
 
-import Loading from "@/app/components/upload-checker/Loading";
-import ProgressBar from "@/app/components/upload-checker/ProgressBar";
+import Loading from "@/components/upload-checker/Loading";
+import ProgressBar from "@/components/upload-checker/ProgressBar";
 import {
   UploadChecker,
   UploadCheckerHead,
@@ -9,7 +9,7 @@ import {
   UploadCheckerDescHeaderText,
   UploadCheckerMainTextBox,
   UploadCheckerBody,
-} from "@/app/components/upload-checker/UploadChecker";
+} from "@/components/upload-checker/UploadChecker";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 

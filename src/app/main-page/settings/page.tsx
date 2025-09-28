@@ -6,7 +6,7 @@ import {
   DeleteAccountButton,
   DeleteAccountButtonText,
   DeleteAccountMainText,
-} from "@/app/components/settings/DeleteAccount";
+} from "@/components/settings/DeleteAccount";
 import { signOut, useSession } from "next-auth/react";
 
 export default function Profile() {

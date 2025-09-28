@@ -1,8 +1,8 @@
 "use client";
 
 import cx from "classnames";
-import { TestingButton } from "../components/testing/TestingButtons";
-import { TestingBoxWithText } from "../components/testing/TestingBoxes";
+import { TestingButton } from "../../components/testing/TestingButtons";
+import { TestingBoxWithText } from "../../components/testing/TestingBoxes";
 import { type FormEvent, useRef, useState } from "react";
 import { APIEndpointBaseBody } from "@/interfaces/body/APIInterfacesBase";
 import { TestResponse } from "@/interfaces/response/TestResponse";
@@ -88,7 +88,7 @@ export default function TestPage() {
 
   async function onButtonClick(
     apiDestination: string,
-    bodySent: CustomButtonSendBody,
+    bodySent: CustomButtonSendBody
   ) {
     console.log("API Request Sent!");
     const responseRaw = await fetch(
@@ -100,7 +100,7 @@ export default function TestPage() {
             "Bearer pk_prod_Bp7SldOdLpuGgvzJppQt0UyxMyH9wagU5MdIeL6OyqZ3JuyqELI5hIH2hYtw_RrN",
           "Content-Type": "application/json",
         },
-      },
+      }
     );
 
     const response = await responseRaw.json();
@@ -109,7 +109,7 @@ export default function TestPage() {
 
   async function onTextboxButtonClick(
     apiDestination: string,
-    bodySent: CustomButtonSendBody,
+    bodySent: CustomButtonSendBody
   ): Promise<string> {
     console.log("API Request Sent!");
     const responseRaw: Response = await fetch(apiDestination, {
@@ -154,7 +154,7 @@ export default function TestPage() {
                 onButtonClick={async () => {
                   const res = await onTextboxButtonClick(
                     item.apiDestination,
-                    item.bodySent,
+                    item.bodySent
                   );
 
                   return res;

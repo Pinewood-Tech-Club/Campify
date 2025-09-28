@@ -18,19 +18,19 @@ import {
   ImageUploader,
   Line,
   SubmitButton,
-} from "@/app/components/create-new/CreateNew";
+} from "@/components/create-new/CreateNew";
 import {
   AddMoreOptionsButton,
   Create,
   CreateCard,
   CreateMain,
-} from "@/app/components/create-new/Create";
-import { MarkdownEditor } from "@/app/components/create-new/ReactMarkdownEditor";
+} from "@/components/create-new/Create";
+import { MarkdownEditor } from "@/components/create-new/ReactMarkdownEditor";
 import { useSession } from "next-auth/react";
 import { SaveCamp } from "@/interfaces/request/SaveCamp";
 import { GetEditingCamp } from "@/interfaces/request/GetEditingCamp";
 import cx from "classnames";
-import { SaveBox } from "@/app/components/create-new/Save";
+import { SaveBox } from "@/components/create-new/Save";
 
 async function autoSave(data: SaveCamp) {
   await fetch(`/api/school/db/camp/auto-save`, {

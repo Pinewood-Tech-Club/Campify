@@ -18,8 +18,8 @@ import {
   HeaderDescriptionText,
   HeaderTagGroup,
   VerticalLine,
-} from "@/app/components/camp-item/CampItem";
-import { CampItemChat } from "@/app/components/camp-item/CampItem";
+} from "@/components/camp-item/CampItem";
+import { CampItemChat } from "@/components/camp-item/CampItem";
 import Image from "next/image";
 import { Room } from "./Room";
 import { CollaborativeApp } from "./CollaborativeApp";
@@ -29,7 +29,7 @@ import { Camp } from "@/interfaces/util/Camp";
 
 export default function Item({ params }: { params: { item: string } }) {
   const [campData, setCampData] = useState<Camp | null>(null);
-  
+
   async function getCampData(id: number): Promise<Camp> {
     const res = await fetch(`/api/school/db/camp/${id}`, {
       method: "POST",

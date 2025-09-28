@@ -1,8 +1,8 @@
 "use client";
 
-import { SearchBox } from "@/app/components/find/SearchBox";
-import { HeaderText } from "@/app/components/find/TextUtil";
-import { Camps, CampWindow } from "@/app/components/find/CampWindow";
+import { SearchBox } from "@/components/find/SearchBox";
+import { HeaderText } from "@/components/find/TextUtil";
+import { Camps, CampWindow } from "@/components/find/CampWindow";
 import { sql } from "@/internal/core";
 import { useEffect, useState } from "react";
 import { GetManyCamps } from "@/interfaces/response/GetManyCamps";
@@ -12,7 +12,7 @@ import {
   CreateNewButtonLinked,
   EnableRemoveCampsSwitch,
   Find,
-} from "@/app/components/find/Find";
+} from "@/components/find/Find";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

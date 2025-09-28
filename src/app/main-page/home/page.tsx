@@ -3,8 +3,8 @@ import {
   RectangleHead,
   RectangleHeaderText,
   RectangleTopText,
-} from "@/app/components/dashboard/main/rectangle/Rectangle";
-import { ProfileBumpChart } from "@/app/components/chart/bump";
+} from "@/components/dashboard/main/rectangle/Rectangle";
+import { ProfileBumpChart } from "@/components/chart/bump";
 import { Calendar } from "@/components/ui/calendar";
 
 export default function Profile() {

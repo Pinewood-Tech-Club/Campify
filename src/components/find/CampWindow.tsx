@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   DeleteCampButton,
   TextWithImageLeft,
-} from "@/app/components/text/TextDecorations";
+} from "@/components/text/TextDecorations";
 import Link from "next/link";
 import { Camp } from "@/interfaces/util/Camp";
 import { useSession } from "next-auth/react";

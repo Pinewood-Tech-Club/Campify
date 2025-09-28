@@ -13,7 +13,7 @@ import {
   SignInHead,
   SignInMargin,
   TextOption,
-} from "@/app/components/signin/SignIn";
+} from "@/components/signin/SignIn";
 import css from "./page.module.css";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
@@ -25,7 +25,7 @@ import {
   ErrorMargin,
   InvalidEmailError,
   SignInError,
-} from "@/app/components/signin/SignInError";
+} from "@/components/signin/SignInError";
 
 export default function SignInPage() {
   enum Error {
