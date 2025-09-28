@@ -7,6 +7,5 @@ export interface Camp {
   image?: string; // varchar 1000
   short_description?: string; // varchar 75
   is_public: boolean;
-
   tags: string[]; // varchar 100
 }
