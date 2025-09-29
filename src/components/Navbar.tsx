@@ -1,18 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import DefaultButton from "./DefaultButton";
-import { ButtonProps } from "./DefaultButton";
 import cx from "classnames";
 import { useState, useRef, useEffect } from "react";
 import css from "./Navbar.module.css";
 import { useRouter } from "next/navigation";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 
 interface NavbarProps {
   nameOfWebsite: string;
   pfpImage: ImageProps;
-  buttonProps: ButtonProps;
-  loggedIn: boolean;
   onClick?: () => void;
 }
 
@@ -26,6 +29,7 @@ export default function Navbar(props: NavbarProps) {
   const [animate, setAnimate] = useState<boolean>(false);
   const imageRef = useRef<HTMLImageElement>(null);
   const router = useRouter();
+  const { user, isLoaded } = useUser();
 
   useEffect(() => {
     const imageElement = imageRef.current;
@@ -49,15 +53,18 @@ export default function Navbar(props: NavbarProps) {
         </a>
         <div className="flex items-center">
           <div className="w-24 h-14 text-xl font-bold">
-            <DefaultButton
-              content={props.buttonProps.content}
-              onClick={props.buttonProps.onClick}
-            />
+            <SignedOut>
+              <SignInButton>
+                <button className="w-full h-full border-4 border-black rounded-xl hover:bg-gray-100 transition-colors">
+                  Sign In
+                </button>
+              </SignInButton>
+            </SignedOut>
           </div>
           <Image
             ref={imageRef}
-            src={props.pfpImage.src}
-            alt={"1"}
+            src={user?.imageUrl || props.pfpImage.src}
+            alt={"Profile"}
             width={10}
             height={10}
             className={cx(
@@ -65,9 +72,10 @@ export default function Navbar(props: NavbarProps) {
               props.pfpImage.w,
               animate ? css.imageNotLoggedIn : css.image,
               "ml-10 cursor-pointer rounded-lg",
+              isLoaded ? "opacity-100" : "opacity-0"
             )}
             onClick={() => {
-              if (!props.loggedIn) {
+              if (!user) {
                 setAnimate(!animate);
               } else {
                 router.push("/main-page/home");

@@ -1,10 +1,9 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 import { TRPCReactProvider } from "@/trpc/react";
+import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
@@ -15,9 +14,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>
-          <TRPCReactProvider>{children}</TRPCReactProvider>
-        </SessionProvider>
+        <ClerkProvider>
+          <TRPCReactProvider>
+            <Navbar
+              nameOfWebsite={"Campify"}
+              pfpImage={{
+                src: "/default_pfp.svg",
+                w: "w-16",
+                h: "h-16",
+              }}
+            />
+
+            {children}
+          </TRPCReactProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

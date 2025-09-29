@@ -31,36 +31,17 @@ import {
   HeadingMargin,
 } from "../components/message-text/Heading";
 import { ButtonText, TitleButton } from "../components/button/TitleButton";
-import { signIn, useSession } from "next-auth/react";
 import { trpc } from "@/trpc/react";
+import { SignUpButton, useUser } from "@clerk/nextjs";
 
 const textTypes = ["font-serif", "font-sans", "font-mono"];
 
 export default function Home() {
-  const session = useSession();
+  const { user, isLoaded } = useUser();
 
   return (
     <main>
       <DivList className="h-screen w-full">
-        <Navbar
-          nameOfWebsite={"Campify"}
-          pfpImage={{
-            src:
-              session.status !== "unauthenticated"
-                ? (session.data?.user.image_url ?? "/default_pfp.svg")
-                : "/default_pfp.svg",
-            w: "w-16",
-            h: "h-16",
-          }}
-          buttonProps={{
-            content: "Sign In",
-            onClick: () => {
-              signIn();
-            },
-          }}
-          loggedIn={session.status !== "unauthenticated"}
-        />
-
         <Heading className="mb-24 flex-grow">
           <HeadingMargin>
             <HeadingHead>
@@ -160,14 +141,11 @@ export default function Home() {
             <HeadingMargin>
               <HeadingHead>Ready To Get Started?</HeadingHead>
             </HeadingMargin>
-            <TitleButton
-              className="mt-20"
-              onClick={() => {
-                signIn();
-              }}
-            >
-              <ButtonText>Get Started</ButtonText>
-            </TitleButton>
+            <SignUpButton>
+              <TitleButton className="mt-20" onClick={() => {}}>
+                <ButtonText>Get Started</ButtonText>
+              </TitleButton>
+            </SignUpButton>
           </Heading>
         </div>
         <div className="h-44">
