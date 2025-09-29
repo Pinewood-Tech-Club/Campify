@@ -15,18 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClerkProvider>
-          <TRPCReactProvider>
-            <Navbar
-              nameOfWebsite={"Campify"}
-              pfpImage={{
-                src: "/default_pfp.svg",
-                w: "w-16",
-                h: "h-16",
-              }}
-            />
-
-            {children}
-          </TRPCReactProvider>
+          <TRPCReactProvider>{children}</TRPCReactProvider>
         </ClerkProvider>
       </body>
     </html>

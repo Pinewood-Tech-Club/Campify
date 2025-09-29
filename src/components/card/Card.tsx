@@ -10,7 +10,7 @@ export function Card(props: CardProps) {
   return (
     <div
       className={cx(
-        "h-96 shadow-2xl px-10 rounded-xl bg-slate-100 w-full flex items-center ",
+        "h-96 shadow-2xl px-10 rounded-xl bg-slate-100 w-full flex items-center hover:scale-105 duration-300 ",
         props.className
       )}
     >

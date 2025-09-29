@@ -37,11 +37,17 @@ import { SignUpButton, useUser } from "@clerk/nextjs";
 const textTypes = ["font-serif", "font-sans", "font-mono"];
 
 export default function Home() {
-  const { user, isLoaded } = useUser();
-
   return (
     <main>
       <DivList className="h-screen w-full">
+        <Navbar
+          nameOfWebsite={"Campify"}
+          pfpImage={{
+            src: "/default_pfp.svg",
+            w: "w-16",
+            h: "h-16",
+          }}
+        />
         <Heading className="mb-24 flex-grow">
           <HeadingMargin>
             <HeadingHead>
@@ -141,7 +147,12 @@ export default function Home() {
             <HeadingMargin>
               <HeadingHead>Ready To Get Started?</HeadingHead>
             </HeadingMargin>
-            <SignUpButton>
+            <SignUpButton
+              forceRedirectUrl={"/main-page/home"}
+              signInForceRedirectUrl={"/main-page/home"}
+              signInFallbackRedirectUrl={"/"}
+              fallbackRedirectUrl={"/"}
+            >
               <TitleButton className="mt-20" onClick={() => {}}>
                 <ButtonText>Get Started</ButtonText>
               </TitleButton>

@@ -54,7 +54,11 @@ export default function Navbar(props: NavbarProps) {
         <div className="flex items-center">
           <div className="w-24 h-14 text-xl font-bold">
             <SignedOut>
-              <SignInButton>
+              <SignInButton
+                forceRedirectUrl={"/main-page/home"}
+                signUpForceRedirectUrl={"/main-page/home"}
+                signUpFallbackRedirectUrl={"/"}
+              >
                 <button className="w-full h-full border-4 border-black rounded-xl hover:bg-gray-100 transition-colors">
                   Sign In
                 </button>

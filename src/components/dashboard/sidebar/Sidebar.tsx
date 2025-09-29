@@ -5,25 +5,21 @@ import cx from "classnames";
 import css from "./Sidebar.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { signOut, useSession } from "next-auth/react";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 
 const pages = ["home", "search", /*"feed", "leaderboard",*/ "settings"];
 const extensions = ["svg", "svg", /*"png", "png",*/ "svg"];
 
 export function SideBar() {
-  const { data: session } = useSession();
+  const { user, isLoaded } = useUser();
+  const { signOut } = useClerk();
   const [indicatorPosition, setIndicatorPosition] = useState(0);
   const page = usePathname();
   const nameOfPage = page.split("/").pop() ?? "";
   const [useIndicator, setUseIndicator] = useState<boolean>(
     pages.includes(nameOfPage)
   );
-
-  useEffect(() => {
-    setUseIndicator(pages.includes(nameOfPage));
-    handleMouseEnterUpdate(pages.indexOf(nameOfPage));
-  }, [nameOfPage]);
 
   function getIndicatorPosition(idex: number): number {
     return idex * 120;
@@ -37,15 +33,33 @@ export function SideBar() {
     handleMouseEnterUpdate(pages.indexOf(nameOfPage));
   };
 
+  useEffect(() => {
+    setUseIndicator(pages.includes(nameOfPage));
+    handleMouseEnterUpdate(pages.indexOf(nameOfPage));
+  }, [nameOfPage]);
+
+  if (!isLoaded) {
+    return (
+      <div className="w-32 h-full flex flex-col bg-cyan-500 pt-16 z-20">
+        <div className="h-16 flex flex-col items-center">
+          <div className="w-16 h-16 border-black rounded-lg bg-gray-200 animate-pulse" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <SideBarContainer onMouseLeave={handleMouseLeaveUpdateToDefault}>
       <SideBarHead>
         <Image
-          src={session?.user.image_url ?? "/default_pfp.svg"}
-          alt={"1"}
+          src={user?.imageUrl ?? "/default_pfp.svg"}
+          alt={"Profile"}
           width={1000}
           height={1000}
-          className="w-16 h-16 border-black rounded-lg"
+          className={cx(
+            "w-16 h-16 border-black rounded-lg",
+            isLoaded ? "opacity-100" : "opacity-0"
+          )}
           key={"1"}
         />
       </SideBarHead>
@@ -77,7 +91,7 @@ export function SideBar() {
       <SideBarBottom>
         <button
           className="cursor-pointer"
-          onClick={() => signOut({ callbackUrl: "/", redirect: true })}
+          onClick={() => signOut({ redirectUrl: "/" })}
         >
           <Image
             src={"/icons/logout-svg.svg"}
