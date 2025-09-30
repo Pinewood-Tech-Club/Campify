@@ -4,6 +4,7 @@ import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
+import ConvexClientProvider from "../../convex/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
@@ -15,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClerkProvider>
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <ConvexClientProvider>
+            <TRPCReactProvider>{children}</TRPCReactProvider>
+          </ConvexClientProvider>
         </ClerkProvider>
       </body>
     </html>

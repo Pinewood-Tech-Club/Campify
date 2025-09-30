@@ -12,6 +12,7 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import { Authenticated, Unauthenticated } from "convex/react";
 
 interface NavbarProps {
   nameOfWebsite: string;
@@ -53,7 +54,7 @@ export default function Navbar(props: NavbarProps) {
         </a>
         <div className="flex items-center">
           <div className="w-24 h-14 text-xl font-bold">
-            <SignedOut>
+            <Unauthenticated>
               <SignInButton
                 forceRedirectUrl={"/main-page/home"}
                 signUpForceRedirectUrl={"/main-page/home"}
@@ -63,7 +64,7 @@ export default function Navbar(props: NavbarProps) {
                   Sign In
                 </button>
               </SignInButton>
-            </SignedOut>
+            </Unauthenticated>
           </div>
           <Image
             ref={imageRef}
