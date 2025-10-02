@@ -16,7 +16,7 @@ export default function RootLayout({
         <SideBar />
       </div>
 
-      <div className="bg-[#e1f4ff] w-full h-full flex-grow overflow-y-auto z-0 p-4">
+      <div className="bg-[#e8f5e9] w-full h-full flex-grow overflow-y-auto z-0 p-4">
         {children}
       </div>
     </div>

@@ -108,7 +108,7 @@ export function CampWindow(props: {
     <Link
       className={cx(
         props.className,
-        "w-96 h-[500px] rounded-lg bg-white shadow-md p-5 flex flex-col " +
+        "w-96 h-[500px] rounded-lg bg-white shadow-md border-2 border-green-200 hover:border-green-400 hover:shadow-lg transition-all p-5 flex flex-col " +
           (props.enableRemoving ? "cursor-pointer" : "cursor-default")
       )}
       href={!props.enableRemoving ? "" : `/main-page/search/${props.id}`}

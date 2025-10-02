@@ -79,6 +79,11 @@ export function SearchBox(props: {
           control: (styles) => ({
             ...styles,
             cursor: "text",
+            borderColor: "#16a34a",
+            borderWidth: "2px",
+            "&:hover": {
+              borderColor: "#15803d",
+            },
           }),
           valueContainer: (provided, state) => ({
             ...provided,

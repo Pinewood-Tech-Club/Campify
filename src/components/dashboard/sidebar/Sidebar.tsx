@@ -41,7 +41,7 @@ export function SideBar() {
 
   if (!isLoaded) {
     return (
-      <div className="w-32 h-full flex flex-col bg-cyan-500 pt-16 z-20">
+      <div className="w-32 h-full flex flex-col bg-green-600 pt-16 z-20">
         <div className="h-16 flex flex-col items-center">
           <div className="w-16 h-16 border-black rounded-lg bg-gray-200 animate-pulse" />
         </div>
@@ -91,7 +91,7 @@ export function SideBarContainer(props: {
   return (
     <div
       className={cx(
-        "w-32 h-full flex flex-col bg-cyan-500 pt-16 z-20",
+        "w-32 h-full flex flex-col bg-green-600 pt-16 z-20",
         props.className
       )}
       onMouseLeave={props.onMouseLeave}
@@ -124,7 +124,7 @@ export function SideBarEntreeSelected(props: {
 }) {
   return (
     <div
-      className={cx("w-full bg-cyan-400 flex justify-center", props.className)}
+      className={cx("w-full bg-green-500 flex justify-center", props.className)}
     >
       {props.children}
     </div>
@@ -138,7 +138,7 @@ export function SideBarEntreeUnselected(props: {
   return (
     <div
       className={cx(
-        "w-full bg-cyan-500 flex justify-center py-1",
+        "w-full bg-green-600 flex justify-center py-1",
         props.className
       )}
     >
@@ -215,7 +215,7 @@ export function LineIndicator({
   return (
     <div
       className={cx(
-        "absolute -left-[2px] w-2 h-8 my-10 bg-cyan-200 rounded-full",
+        "absolute -left-[2px] w-2 h-8 my-10 bg-green-300 rounded-full",
         css["sidebar-indicator"],
         className
       )}
