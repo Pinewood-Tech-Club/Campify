@@ -48,9 +48,9 @@ export default function Navbar(props: NavbarProps) {
   }, []);
 
   return (
-    <div className="w-full bg-green-50 border-b-2 border-green-200">
-      <div className="flex justify-between mx-7 pt-2 pb-2">
-        <a className="text-4xl font-bold cursor-pointer text-green-800">
+    <div className="w-full">
+      <div className="flex justify-between mx-7 pt-2">
+        <a className="text-4xl font-bold cursor-pointer">
           {props.nameOfWebsite}
         </a>
         <div className="flex items-center">
@@ -61,7 +61,7 @@ export default function Navbar(props: NavbarProps) {
                 signUpForceRedirectUrl={"/main-page/home"}
                 signUpFallbackRedirectUrl={"/"}
               >
-                <button className="w-full h-full border-4 border-green-600 rounded-xl hover:bg-green-100 transition-colors text-green-700 font-bold cursor-pointer">
+                <button className="w-full h-full border-4 border-black rounded-xl hover:bg-gray-100 transition-colors">
                   Sign In
                 </button>
               </SignInButton>
