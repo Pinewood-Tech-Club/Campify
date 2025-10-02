@@ -10,7 +10,7 @@ import {
   UploadCheckerMainTextBox,
   UploadCheckerBody,
 } from "@/components/upload-checker/UploadChecker";
-import { useSession } from "next-auth/react";
+import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 export default function UploadCheck({
@@ -18,7 +18,7 @@ export default function UploadCheck({
 }: {
   params: { campId: string };
 }) {
-  const { data: sessionData } = useSession();
+  const { user } = useUser();
   const [isDone, setIsDone] = useState(false);
   const [isProfane, setIsProfane] = useState(false);
 
@@ -30,7 +30,7 @@ export default function UploadCheck({
       },
       body: JSON.stringify({
         campId: params.campId,
-        userId: sessionData?.user.id,
+        userId: user?.id,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -40,7 +40,7 @@ export default function UploadCheck({
         });
       }
     });
-  }, [sessionData]);
+  }, [user]);
 
   return (
     <main className="w-full h-full">

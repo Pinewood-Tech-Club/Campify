@@ -26,7 +26,7 @@ import {
   CreateMain,
 } from "@/components/create-new/Create";
 import { MarkdownEditor } from "@/components/create-new/ReactMarkdownEditor";
-import { useSession } from "next-auth/react";
+import { useUser } from "@clerk/nextjs";
 import { SaveCamp } from "@/interfaces/request/SaveCamp";
 import { GetEditingCamp } from "@/interfaces/request/GetEditingCamp";
 import cx from "classnames";
@@ -43,7 +43,7 @@ async function autoSave(data: SaveCamp) {
 }
 
 export default function CreateNewPage() {
-  const { data: sessionData } = useSession();
+  const { user } = useUser();
   const [data, setData] = useState<SaveCamp>();
   const [cardPortionVisible, setCardPortionVisible] = useState(false);
   const timeoutId = useRef<NodeJS.Timeout>();
@@ -51,7 +51,7 @@ export default function CreateNewPage() {
 
   useEffect(() => {
     const body: GetEditingCamp = {
-      userId: sessionData?.user.id ? parseInt(sessionData?.user.id) : undefined,
+      userId: user?.id ? parseInt(user?.id) : undefined,
     };
 
     fetch(`/api/school/db/camp/editing-camp`, {
@@ -63,7 +63,7 @@ export default function CreateNewPage() {
     })
       .then((r) => r.json())
       .then((r) => setData(r as SaveCamp));
-  }, [sessionData]);
+  }, [user]);
 
   useEffect(() => {
     timeoutId.current = setTimeout(() => {

@@ -8,7 +8,6 @@ import {
 } from "@/components/text/TextDecorations";
 import Link from "next/link";
 import { Camp } from "@/interfaces/util/Camp";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export function Camps(props: {

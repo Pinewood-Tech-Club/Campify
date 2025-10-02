@@ -14,7 +14,7 @@ import {
   Find,
 } from "@/components/find/Find";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
 function startsWithNumber(str: string): boolean {
@@ -24,7 +24,7 @@ function startsWithNumber(str: string): boolean {
 export default function Profile() {
   const [campData, setCampData] = useState<Camp[] | null>(null);
   const [removeCamps, setRemoveCamps] = useState(true);
-  const { data: sessionData } = useSession();
+  const { user } = useUser();
 
   async function getCampData(): Promise<GetManyCamps> {
     const res = await fetch(`/api/school/db/camp/many`, {
@@ -45,11 +45,11 @@ export default function Profile() {
 
   return (
     <main className="w-full h-full flex flex-col">
-      {!startsWithNumber(sessionData?.user.email ?? "") && (
+      {!startsWithNumber(user?.primaryEmailAddress?.emailAddress ?? "") && (
         <EnableRemoveCampsSwitch
           className="absolute top-2 right-2"
           onClick={function (state: boolean): void {
-            if (!sessionData?.user) return;
+            if (!user) return;
             setRemoveCamps(state);
           }}
         />

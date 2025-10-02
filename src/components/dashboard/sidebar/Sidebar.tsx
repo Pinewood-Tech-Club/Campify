@@ -5,11 +5,12 @@ import cx from "classnames";
 import css from "./Sidebar.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useUser, useClerk } from "@clerk/nextjs";
+import { useUser, useClerk, UserProfile, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import { UserSettings } from "@/components/settings/UserSettings";
 
-const pages = ["home", "search", /*"feed", "leaderboard",*/ "settings"];
-const extensions = ["svg", "svg", /*"png", "png",*/ "svg"];
+const pages = ["home", "search" /*"feed", "leaderboard",*/];
+const extensions = ["svg", "svg" /*"png", "png",*/];
 
 export function SideBar() {
   const { user, isLoaded } = useUser();
@@ -51,17 +52,7 @@ export function SideBar() {
   return (
     <SideBarContainer onMouseLeave={handleMouseLeaveUpdateToDefault}>
       <SideBarHead>
-        <Image
-          src={user?.imageUrl ?? "/default_pfp.svg"}
-          alt={"Profile"}
-          width={1000}
-          height={1000}
-          className={cx(
-            "w-16 h-16 border-black rounded-lg",
-            isLoaded ? "opacity-100" : "opacity-0"
-          )}
-          key={"1"}
-        />
+        <UserSettings />
       </SideBarHead>
       <SideBarBody className="mt-10 relative">
         <SideBarEntries>
@@ -88,20 +79,6 @@ export function SideBar() {
         </SideBarEntries>
         {useIndicator && <LineIndicator top={indicatorPosition} className="" />}
       </SideBarBody>
-      <SideBarBottom>
-        <button
-          className="cursor-pointer"
-          onClick={() => signOut({ redirectUrl: "/" })}
-        >
-          <Image
-            src={"/icons/logout-svg.svg"}
-            alt={"1"}
-            width={50}
-            height={50}
-            className="w-12 h-12"
-          />
-        </button>
-      </SideBarBottom>
     </SideBarContainer>
   );
 }

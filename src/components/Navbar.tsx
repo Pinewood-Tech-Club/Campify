@@ -10,9 +10,9 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
+  UserProfile,
   useUser,
 } from "@clerk/nextjs";
-import { Authenticated, Unauthenticated } from "convex/react";
 
 interface NavbarProps {
   nameOfWebsite: string;
@@ -54,7 +54,7 @@ export default function Navbar(props: NavbarProps) {
         </a>
         <div className="flex items-center">
           <div className="w-24 h-14 text-xl font-bold">
-            <Unauthenticated>
+            <SignedOut>
               <SignInButton
                 forceRedirectUrl={"/main-page/home"}
                 signUpForceRedirectUrl={"/main-page/home"}
@@ -64,9 +64,18 @@ export default function Navbar(props: NavbarProps) {
                   Sign In
                 </button>
               </SignInButton>
-            </Unauthenticated>
+            </SignedOut>
           </div>
-          <Image
+
+          <UserProfile routing="hash" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/*
+<Image
             ref={imageRef}
             src={user?.imageUrl || props.pfpImage.src}
             alt={"Profile"}
@@ -87,8 +96,4 @@ export default function Navbar(props: NavbarProps) {
               }
             }}
           />
-        </div>
-      </div>
-    </div>
-  );
-}
+*/
