@@ -1,10 +1,8 @@
 import { sql } from "@/internal/core";
 import { Camp } from "@/interfaces/util/Camp";
 
-export async function POST(
-  request: Request,
-  { params }: { params: { campID: string } }
-) {
+export async function POST(request: Request, props: { params: Promise<{ campID: string }> }) {
+  const params = await props.params;
   const dbResult = await sql<Camp[]>`
     SELECT id, likes, comments, description, name, image, tags
     FROM camp

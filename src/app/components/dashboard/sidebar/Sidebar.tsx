@@ -53,6 +53,7 @@ export function SideBar() {
         <SideBarEntries>
           {pages.map((item, index) => (
             <SideBarEntry
+              key={item}
               className="cursor-pointer relative my-7"
               onMouseEnter={() => handleMouseEnterUpdate(index)}
               onClick={() => {}}

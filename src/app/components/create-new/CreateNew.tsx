@@ -260,7 +260,7 @@ export function ImageUploader(props: { campId: number; initialImage: string }) {
         {isDragActive ? (
           <p>Drop the image here...</p>
         ) : (
-          <p>Drag 'n' drop an image here, or click to select it</p>
+          <p>Drag &apos;n&apos; drop an image here, or click to select it</p>
         )}
       </div>
       <div className="cursor-default mt-3 flex flex-col gap-3">

@@ -1,9 +1,20 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import Select, { MultiValue } from "react-select";
+import React, { KeyboardEvent, useEffect, useRef, useState } from "react";
+import Select, {
+  GroupBase,
+  InputActionMeta,
+  MultiValue,
+  SelectInstance,
+  StylesConfig,
+} from "react-select";
 import cx from "classnames";
 import { Camp } from "@/interfaces/util/Camp";
+
+type SearchOption = {
+  label: string;
+  value: string;
+};
 
 async function search(searchString: string) {
   const result = await fetch(`/api/school/search/get-camps-from-search`, {
@@ -46,14 +57,25 @@ export function SearchBox(props: {
   getCurrentRenderedCamps: () => Camp[] | null;
 }) {
   const [currentSearch, setCurrentSearch] = useState<string>("");
-  const timeoutId = useRef<NodeJS.Timeout>();
-  const [selectedOptions, setSelectedOptions] = useState<
-    MultiValue<{
-      label: string;
-      value: string;
-    }>
-  >();
-  const selectRef = useRef(null);
+  const timeoutId = useRef<NodeJS.Timeout | undefined>(undefined);
+  const [selectedOptions, setSelectedOptions] =
+    useState<MultiValue<SearchOption>>();
+  const selectRef = useRef<SelectInstance<SearchOption, true> | null>(null);
+  const selectStyles: StylesConfig<SearchOption, true, GroupBase<SearchOption>> =
+    {
+      control: (styles) => ({
+        ...styles,
+        cursor: "text",
+      }),
+      valueContainer: (provided) => ({
+        ...provided,
+        height: "50px",
+      }),
+      input: (base) => ({
+        ...base,
+        fontSize: "20px",
+      }),
+    };
 
   useEffect(() => {
     timeoutId.current = setTimeout(async () => {
@@ -75,32 +97,19 @@ export function SearchBox(props: {
         isMulti
         ref={selectRef}
         className={cx(props.className, "w-full h-full")}
-        styles={{
-          control: (styles) => ({
-            ...styles,
-            cursor: "text",
-          }),
-          valueContainer: (provided, state) => ({
-            ...provided,
-            height: "50px",
-          }),
-          input: (base) => ({
-            ...base,
-            fontSize: "20px",
-          }),
-        }}
+        styles={selectStyles}
         components={{
           DropdownIndicator: () => null,
           IndicatorSeparator: () => null,
           Menu: () => null,
         }}
         placeholder={currentSearch == "" ? "Search" : currentSearch}
-        onKeyDown={async (e) => {
+        onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter") {
-            (selectRef.current as any).blur();
+            selectRef.current?.blur();
           }
         }}
-        onInputChange={(value, action) => {
+        onInputChange={(value: string, action: InputActionMeta) => {
           if (action.action === "input-change") {
             setCurrentSearch(value);
           }

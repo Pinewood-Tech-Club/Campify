@@ -1,7 +1,5 @@
-export async function POST(
-  request: Request,
-  { params }: { params: { route: string } },
-) {
+export async function POST(request: Request, props: { params: Promise<{ route: string }> }) {
+  const params = await props.params;
   switch (params.route) {
   }
 
@@ -18,10 +16,8 @@ export async function POST(
   );
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: { route: string } },
-) {
+export async function GET(request: Request, props: { params: Promise<{ route: string }> }) {
+  const params = await props.params;
   switch (params.route) {
     case "userData": {
     }

@@ -22,9 +22,8 @@ export function Camps(props: {
     <div className="w-full h-full mt-16 grow">
       <div className="grid grid-flow-row grid-cols-3 justify-between w-full px-20">
         {props.campList.map((item: Camp, index) => (
-          <div className="mb-10">
+          <div className="mb-10" key={item.id ?? index}>
             <CampWindow
-              key={index}
               id={item.id}
               enableRemoving={props.enableRemoving}
             >
@@ -41,10 +40,8 @@ export function Camps(props: {
                   <Image
                     src={"data:image/jpeg;base64," + item.image}
                     alt={"1"}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                    className="w-auto h-full overflow-hidden"
+                    fill
+                    className="w-auto h-full overflow-hidden object-cover object-center"
                   />
                 )}
               </CampWindowBody>

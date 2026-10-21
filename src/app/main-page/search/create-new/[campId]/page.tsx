@@ -11,13 +11,14 @@ import {
   UploadCheckerBody,
 } from "@/app/components/upload-checker/UploadChecker";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 
-export default function UploadCheck({
-  params,
-}: {
-  params: { campId: string };
-}) {
+export default function UploadCheck(
+  props: {
+    params: Promise<{ campId: string }>;
+  }
+) {
+  const params = use(props.params);
   const { data: sessionData } = useSession();
   const [isDone, setIsDone] = useState(false);
   const [isProfane, setIsProfane] = useState(false);
@@ -40,7 +41,7 @@ export default function UploadCheck({
         });
       }
     });
-  }, [sessionData]);
+  }, [params.campId, sessionData]);
 
   return (
     <main className="w-full h-full">
