@@ -1,9 +1,8 @@
 "use client";
 
 import { useThreads } from "@liveblocks/react/suspense";
-import { Comment, Composer, Thread } from "@liveblocks/react-ui";
+import { Composer, Thread } from "@liveblocks/react-ui";
 import { ProfanityFilterResponse } from "@/interfaces/response/ProfanityFilter";
-import { createClient } from "@liveblocks/core";
 
 export function CollaborativeApp() {
   const { threads } = useThreads();

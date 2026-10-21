@@ -24,12 +24,13 @@ import Image from "next/image";
 import { Room } from "./Room";
 import { CollaborativeApp } from "./CollaborativeApp";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { Camp } from "@/interfaces/util/Camp";
 
-export default function Item({ params }: { params: { item: string } }) {
+export default function Item(props: { params: Promise<{ item: string }> }) {
+  const params = use(props.params);
   const [campData, setCampData] = useState<Camp | null>(null);
-  
+
   async function getCampData(id: number): Promise<Camp> {
     const res = await fetch(`/api/school/db/camp/${id}`, {
       method: "POST",

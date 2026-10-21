@@ -46,7 +46,7 @@ export default function CreateNewPage() {
   const { data: sessionData } = useSession();
   const [data, setData] = useState<SaveCamp>();
   const [cardPortionVisible, setCardPortionVisible] = useState(false);
-  const timeoutId = useRef<NodeJS.Timeout>();
+  const timeoutId = useRef<NodeJS.Timeout | undefined>(undefined);
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
@@ -120,7 +120,7 @@ export default function CreateNewPage() {
                   </CreateNewTitleText>
                   <CreateNewSubtitle>
                     These fields will appear on the camp display card in the
-                    "find" menu.
+                    &quot;find&quot; menu.
                   </CreateNewSubtitle>
                 </CreateNewHead>
 
