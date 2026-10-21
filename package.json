@@ -12,8 +12,9 @@
   "dependencies": {
     "@headlessui/react": "^2.0.4",
     "@headlessui/tailwindcss": "^0.2.1",
-    "@liveblocks/react": "^2.2.1",
-    "@liveblocks/react-ui": "^2.2.1",
+    "@liveblocks/client": "3.24.3",
+    "@liveblocks/react": "3.24.3",
+    "@liveblocks/react-ui": "3.24.3",
     "@nivo/bump": "^0.87.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@remixicon/react": "^4.2.0",

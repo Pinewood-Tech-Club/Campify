@@ -6,7 +6,6 @@ import {
   RoomProvider,
   ClientSideSuspense,
 } from "@liveblocks/react/suspense";
-import { createClient } from "@liveblocks/core";
 import { client } from "@/app/main-page/search/[item]/liveblocks";
 import { ProfanityFilterResponse } from "@/interfaces/response/ProfanityFilter";
 import {

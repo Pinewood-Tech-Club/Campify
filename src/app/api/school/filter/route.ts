@@ -4,7 +4,6 @@ import {
   ProfanityFilterType,
 } from "@/interfaces/request/ProfanityFilter";
 import { ProfanityFilterResponse } from "@/interfaces/response/ProfanityFilter";
-import { CommentData } from "@liveblocks/core";
 import { groq, liveblocks } from "@/internal/core";
 import { handleChatGPTFilter, handleProfanityFilter } from "./filter-functions";
 

@@ -1,4 +1,4 @@
-import { createClient } from "@liveblocks/core";
+import { createClient } from "@liveblocks/client";
 
 export const client = createClient({
   publicApiKey:
